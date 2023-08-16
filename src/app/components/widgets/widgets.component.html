@@ -1,12 +1,42 @@
-<div class="grid justify-center grid-cols-4 gap-4">
+<div
+  class="grid justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
+>
   <div *ngFor="let widget of widgets">
-    <mat-card>
-      <mat-card-header> {{ widget.name }} </mat-card-header>
+    <mat-card class="min-w-[350px] mat-elevation-z1">
+      <mat-card-header [style.color]="widget.color">
+        {{ widget.name }}
+      </mat-card-header>
       <mat-card-content>
-        <!-- <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput disabled value="{{ widget.name }}" />
-        </mat-form-field> -->
+        <form class="form-container">
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput readonly="true" value="{{ widget.name }}" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Color</mat-label>
+            <input
+              matInput
+              readonly="true"
+              value="{{ widget.color }}"
+              [style.color]="widget.color"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input
+              matInput
+              readonly="true"
+              value="{{ widget.price | currency }}"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Id</mat-label>
+            <input matInput readonly="true" value="{{ widget.id }}" />
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="primary" (click)="delete(widget.id)">DELETE</button>
+          </div>
+        </form>
       </mat-card-content>
     </mat-card>
   </div>

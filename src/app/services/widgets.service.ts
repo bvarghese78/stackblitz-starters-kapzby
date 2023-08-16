@@ -11,7 +11,8 @@ export class WidgetsService {
   private GET_WIDGETS_URI: string =
     'https://4tng5yf0o6.execute-api.us-east-1.amazonaws.com/widgets';
 
-  // delete widget URI is DELETE https://4tng5yf0o6.execute-api.us-east-1.amazonaws.com/widgets/<ID>
+  private DELETE_WIDGET: string =
+    'https://4tng5yf0o6.execute-api.us-east-1.amazonaws.com/widgets';
 
   constructor(private http: HttpClient) {
     //this.loadWidget();
@@ -19,5 +20,9 @@ export class WidgetsService {
 
   public loadWidget(): Observable<Array<Widget>> {
     return this.http.get<Array<Widget>>(this.GET_WIDGETS_URI);
+  }
+
+  public deleteWidget(id: string): void {
+    this.http.delete(`${this.DELETE_WIDGET}/${id}`).subscribe();
   }
 }
