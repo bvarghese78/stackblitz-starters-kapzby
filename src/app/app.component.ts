@@ -4,6 +4,7 @@ import { MatCard, MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { WidgetsComponent } from './components/widgets/widgets.component';
 import { WidgetsService } from './services/widgets.service';
 import { Widget } from './types/widget';
 
@@ -15,9 +16,7 @@ import { Widget } from './types/widget';
   imports: [
     MatToolbarModule,
     RouterModule,
-    CommonModule,
-    MatCardModule,
-    MatFormFieldModule,
+    WidgetsComponent,
   ],
 })
 export class AppComponent implements OnInit {
