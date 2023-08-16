@@ -1,22 +1,33 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { WidgetsService } from './services/widgets.service';
+import { Widget } from './types/widget';
 
 @Component({
   selector: 'my-app',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [
-    MatToolbarModule,
-    RouterModule,
-  ]
+  imports: [MatToolbarModule, RouterModule, CommonModule],
 })
 export class AppComponent implements OnInit {
+  public widgets: Array<Widget> = [];
+  public errorMessage: any;
 
-  constructor() { }
+  constructor(private widgetService: WidgetsService) {}
 
   ngOnInit() {
+    this.widgetService.loadWidget().subscribe({
+      next: (results) => {
+        for (const key in results) {
+          if (results.hasOwnProperty(key)) {
+            this.widgets.push(results[key]);
+          }
+        }
+      },
+      error: (err) => (this.errorMessage = err),
+    });
   }
-
 }

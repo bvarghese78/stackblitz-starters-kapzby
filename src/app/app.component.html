@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
   <span>Angular Developer Test</span>
-
 </mat-toolbar>
 
-
+<div *ngFor="let widget of widgets">
+  <p>{{ widget.color }}</p>
+</div>
 <router-outlet></router-outlet>
