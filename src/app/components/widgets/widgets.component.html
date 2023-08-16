@@ -34,7 +34,13 @@
             <input matInput readonly="true" value="{{ widget.id }}" />
           </mat-form-field>
           <div>
-            <button mat-raised-button color="primary" (click)="delete(widget.id)">DELETE</button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="delete(widget.id)"
+            >
+              DELETE
+            </button>
           </div>
         </form>
       </mat-card-content>

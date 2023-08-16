@@ -13,15 +13,12 @@ import { Widget } from './types/widget';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [
-    MatToolbarModule,
-    RouterModule,
-    WidgetsComponent,
-  ],
+  imports: [MatToolbarModule, RouterModule, WidgetsComponent, CommonModule],
 })
 export class AppComponent implements OnInit {
   public widgets: Array<Widget> = [];
   public errorMessage: any;
+  public totalPrice: number = 0;
 
   constructor(private widgetService: WidgetsService) {}
 
@@ -31,8 +28,12 @@ export class AppComponent implements OnInit {
         for (const key in results) {
           if (results.hasOwnProperty(key)) {
             this.widgets.push(results[key]);
+
+            this.totalPrice += results[key].price;
           }
         }
+
+        console.log(this.totalPrice);
       },
       error: (err) => (this.errorMessage = err),
     });

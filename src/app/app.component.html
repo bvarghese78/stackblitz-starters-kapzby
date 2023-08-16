@@ -2,6 +2,15 @@
   <span>Angular Developer Test</span>
 </mat-toolbar>
 
+<div class="columns-2">
+  <div>
+    Widgets: <strong>{{ widgets.length }}</strong>
+  </div>
+
+  <div>
+    Total Price: <strong>{{ totalPrice | currency }}</strong>
+  </div>
+</div>
 <app-widgets [widgets]="widgets"></app-widgets>
 
 <router-outlet></router-outlet>
